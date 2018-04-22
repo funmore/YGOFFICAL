@@ -1,4 +1,4 @@
 
 <view class="section">
-    <textarea placeholder="严禁出现涉密信息/字数在10字" value="{{reason}}" bindinput="bindTextAreaInput" auto-height show-confirm-bar/>
+    <textarea placeholder="严禁出现涉密信息/字数在10字以上" value="{{reason}}" bindinput="bindTextAreaInput" auto-height show-confirm-bar/>
   </view>

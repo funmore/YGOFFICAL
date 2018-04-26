@@ -18,7 +18,8 @@ Page({
     //state: 0：待审查； 1：待派车 2：待确认  3：待评价  4：已完成
     orderArray:new Array(),
     loadingHidden:false,
-    hasRefresh:false
+    hasRefresh:false,
+    approvalDisableState:false
   },
   countLength() {
     var stateLength=new Array(0,0,0);
@@ -185,6 +186,9 @@ Page({
     var item=e.currentTarget.dataset.item;
     var idx=e.currentTarget.dataset.idx;
     var that =this;
+    that.setData({
+      approvalDisableState:true
+    })
     wx.showModal({
         content: '审批通过用车申请？',
         success: function(res) {
@@ -231,6 +235,9 @@ Page({
                     }else{
 
                     }
+                        that.setData({
+                        approvalDisableState:false
+                      })
                   }
                 })
             }

@@ -16,7 +16,7 @@ Page({
     activeTab: 0,
     selectedAllStatus:false,
     selectedAllStatusRetreat:false,
-    stateLength:new Array(3),
+    stateLength:new Array(0,0,0,0,0),
     stateLengthFlag:false,
     orderArray:new Array(),
     loadingHidden:false,
@@ -51,7 +51,7 @@ Page({
         stateLengthFlag:true
       });
   },
-  adminShow(){
+  adminShow(tabNum){
     this.setData({
                     loadingHidden:false
                   })
@@ -64,7 +64,8 @@ Page({
                 data: {
                    token:wx.getStorageSync('token'),
                    t:timestamp,
-                   s:sha1.hex_sha1(app.data.key+timestamp)                   
+                   s:sha1.hex_sha1(app.data.key+timestamp),
+                   tabNum:tabNum                   
                 },
                 header: {
                     'content-type': 'application/json'
@@ -73,12 +74,14 @@ Page({
                 success: function(res) {
                   //处理订单code
                   that.setData({
-                    orderArray: res.data,
+                    orderArray: res.data.data,
+                    stateLength:res.data.tabNums,
+                    stateLengthFlag:true,
                     loadingHidden:true,
                     selectedAllStatusRetreat:false,
-                    selectedAllStatus:false  
+                    selectedAllStatus:false
                   });
-                  that.countLength();
+                  //that.countLength();
                 }
               })
   },
@@ -105,7 +108,7 @@ Page({
   onShow:function(options){
         if(wx.getStorageSync('role')=='admin')
             {
-                this.adminShow();
+                this.adminShow(0);
             }else{
               wx.showModal({
                         title: '无信息',
@@ -141,30 +144,36 @@ Page({
       that.setData({
         hasRefresh:true
       })
-    var timestamp = Date.parse(new Date());
-            timestamp = timestamp / 1000;
-            wx.request({
-                url: api + 'order/adminShow', //正吉url 获取订单
-                data: {
-                   token:wx.getStorageSync('token'),
-                   t:timestamp,
-                   s:sha1.hex_sha1(app.data.key+timestamp)                   
-                },
-                header: {
-                    'content-type': 'application/json'
-                },
-                //method:'GET',
-                success: function(res) {
-                  //处理订单code
-                  that.setData({
-                    orderArray: res.data,
-                    hasRefresh:false,
-                    selectedAllStatusRetreat:false,
-                    selectedAllStatus:false  
-                  });
-                  that.countLength();
-                }
-              })
+      that.adminShow(that.data.activeTab)
+      that.setData({
+        hasRefresh:false
+      })
+    // var timestamp = Date.parse(new Date());
+    //         timestamp = timestamp / 1000;
+    //         wx.request({
+    //             url: api + 'order/adminShow', //正吉url 获取订单
+    //             data: {
+    //                token:wx.getStorageSync('token'),
+    //                t:timestamp,
+    //                s:sha1.hex_sha1(app.data.key+timestamp),
+    //                tabNum:that.activeTab                   
+    //             },
+    //             header: {
+    //                 'content-type': 'application/json'
+    //             },
+    //             //method:'GET',
+    //             success: function(res) {
+    //               //处理订单code
+    //               that.setData({
+    //                 orderArray: res.data.data,
+    //                 stateLength:res.data.tabNums,
+    //                 stateLengthFlag:true,
+    //                 hasRefresh:false,
+    //                 selectedAllStatusRetreat:false,
+    //                 selectedAllStatus:false  
+    //               });
+    //             }
+    //           })
   },
   _updateSelectedPage(page) {
     let {tabs, stv, activeTab} = this.data;
@@ -172,6 +181,7 @@ Page({
     this.setData({activeTab: activeTab})
     stv.offset = stv.windowWidth*activeTab;
     this.setData({stv: this.data.stv});
+    this.adminShow(page);
   },
   handlerTabTap(e) {
     this._updateSelectedPage(e.currentTarget.dataset.index);
@@ -247,7 +257,7 @@ Page({
               },
               success: function(res) {
                       if(res.data==0){
-                        that.adminShow();
+                        that.adminShow(0);
                       // var timestamp = Date.parse(new Date());
                       //         timestamp = timestamp / 1000;
                       //         wx.request({
@@ -319,7 +329,7 @@ Page({
               },
               success: function(res) {
                       if(res.data==0){
-                        that.adminShow();
+                        that.adminShow(0);
                       // var timestamp = Date.parse(new Date());
                       //         timestamp = timestamp / 1000;
                       //         wx.request({
@@ -483,7 +493,7 @@ Page({
                         icon: 'success',
                         duration: 1000
                       });
-                      that.adminShow(); 
+                      that.adminShow(0); 
                     }else{
 
                     }

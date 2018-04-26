@@ -37,7 +37,7 @@
                   </view> <!-- info end -->
                   
                   <form bindsubmit="approval" data-item="{{item}}" data-idx="{{idx}}"  wx:if="{{(tabIndex<2&&!item.selected)&&(!(item.state==9&&role==2))}}"  report-submit="true">
-                          <button formType="submit"  type="primary" size="mini" class="goAdmin" >审批通过</button>
+                          <button formType="submit"  type="primary" size="mini" class="goAdmin" disabled="{{approvalDisableState}}">审批通过</button>
                   </form>
                   <button data-item="{{item}}"  wx:if="{{(tabIndex<2&&!item.selected)&&(!(item.state==9&&role==2))}}" type="warn" size="mini" class="goAdmin" bindtap="disapproval" >审批拒绝</button>
                   <button  wx:if="{{(tabIndex<2&&item.selected)&&(!(item.state==9&&role==2))}}"  size="mini" class="goAdmin competeFail" disabled="{{item.selected}}">已审批</button>

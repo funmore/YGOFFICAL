@@ -36,6 +36,18 @@
   </view>
 </view>
 
+<view class="section " >
+  <view class="name">
+     流程类型
+  </view>
+  <view class="content">
+    <view wx:if="{{item.isOld==0}}">
+    申请用车流程
+    </view>
+    <view wx:else> 事后补单流程 </view>
+  </view>
+
+</view>
 
 
 

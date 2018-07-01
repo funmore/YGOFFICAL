@@ -232,8 +232,12 @@ Page({
                         duration: 1000
                       });
                       that.approvalShow(); 
-                    }else{
-
+                    }else if(res.data==2){
+                       wx.showModal({
+                        title: '审批失败',
+                        content: '审批时间务必在实际用车前1小时完成，请拒绝此单审批，并通知申请人重新提交',
+                        showCancel: false
+                      });
                     }
                         that.setData({
                         approvalDisableState:false

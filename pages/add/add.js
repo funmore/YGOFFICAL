@@ -137,7 +137,7 @@ Page({
     var apply_time=new Date();
     var time=use_time.getTime()-apply_time.getTime();   //申请时间和当前时间的差
     if(data.index_applyType==0){
-          if(time<1000*60*30)   //1000*60*60*0.5
+          if(time<1000*60*60)   //1000*60*60*0.5
           { 
             isTimeOk=false;
           }else{
@@ -393,7 +393,7 @@ Page({
     errorMessage[5]="乘车联系人至少填写一个";
     errorMessage[6]="手机号填写不合法";
     errorMessage[7]="用车原因至少10个字符";
-    errorMessage[8]="申请用车流程用车时间需在申请时间半小时后";
+    errorMessage[8]="申请用车流程用车时间需在申请时间1小时后";
     errorMessage[9]="事后补单流程用车时间需在申请时间之前";
     var errorMessageToShow =new Array();
 
@@ -406,7 +406,7 @@ Page({
     var apply_time=new Date();
     var time=use_time.getTime()-apply_time.getTime();   //申请时间和当前时间的差
     if(data.index_applyType==0){
-          if(time<1000*60*30)   //1000*60*60*0.5
+          if(time<1000*60*60)   //1000*60*60*0.5
           { 
             isTimeOk=false;
             errorMessageToShow.push(errorMessage[8]);

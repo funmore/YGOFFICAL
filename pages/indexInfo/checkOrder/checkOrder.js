@@ -13,6 +13,7 @@ Page({
     remarkInTable:new Array(),
     reasonInTable:new Array(),
     array_yongCheLeiXing:['集体活动','科研生产','执纪','公务接待','应急'],
+    refuseReason:''
   },
 
   onLoad: function (query) {
@@ -65,6 +66,12 @@ Page({
                       })
                       that.setRemarkInTable(that.data.item.remark);
                       that.setReasonInTable(that.data.item.reason);
+                      var approvelogs=res.data.approvelog;
+                      var filtered=approvelogs.filter(function(itemone){return itemone.approve_node==43})
+                      var refuseReason=filtered[0];
+                      that.setData({
+                          refuseReason:refuseReason.remark
+                      })
 
                     }
                     that.setData({

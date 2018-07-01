@@ -11,7 +11,7 @@
                       <view wx:elif="{{item.state==40}}"> 待确认 </view>
                       <view wx:elif="{{(item.state==41&&!role)}}"> 待结算 </view>
                       <view wx:elif="{{(item.state==44&&!role)}}"> 待调度审核 </view>
-                      <view wx:elif="{{(item.state==43&&!role)}}"> <view>结算审核未通过</view> <view>理由:{{item.approvelog[0].remark}}</view></view>
+                      <view wx:elif="{{(item.state==43&&!role)}}"> <view>结算审核未通过</view> <view>理由:{{refuseReason}}</view></view>
                       <view wx:elif="{{(item.state==0||item.state==1)}}"> 已取消 </view>
                       <view wx:elif="{{(item.state>50)}}"> <view>审批未通过</view> <view>理由:{{item.disapp_remark}}</view></view>
                       <view wx:else> 已完成 </view>

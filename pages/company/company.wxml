@@ -27,7 +27,7 @@
                   </view> <!-- info end -->
 
 
-                  <form bindsubmit="acceptOrder" data-item="{{item}}"  wx:if="{{tabIndex==0}}" report-submit="true">
+                  <form bindsubmit="acceptOrder" data-item="{{item}}" data-idx="{{idx}}"   wx:if="{{tabIndex==0&&!item.selected}}" report-submit="true">
                     <!-- 此处是表单元素 -->
                       <button  formType="submit"  type="primary" size="mini" class="goAdmin" >接单</button>
                   </form>
@@ -37,7 +37,7 @@
                       <button  formType="submit"  type="primary" size="mini" class="goAdmin" >抢单</button>
                   </form>
 
-                  <button  wx:if="{{tabIndex==1&&item.selected}}"  size="mini" class="goAdmin competeFail" disabled="{{item.selected}}">已抢</button>
+                  <button  wx:if="{{tabIndex<=1&&item.selected}}"  size="mini" class="goAdmin competeFail" disabled="{{item.selected}}">已抢</button>
                   <button data-item="{{item}}"  wx:if="{{tabIndex==2 && item.state==39}}" type="primary" size="mini" class="goAdmin" bindtap="matchOrder" >匹配司机车辆</button>
                   <button data-item="{{item}}"  wx:if="{{tabIndex==2 && item.state==40}}" type="primary" size="mini" class="goAdmin" bindtap="matchOrder" >修正司机车辆</button>
                   <button data-item="{{item}}"  wx:if="{{tabIndex==3 && item.state==41}}" type="primary" size="mini" class="goAdmin" bindtap="settleOrder">结算信息</button>

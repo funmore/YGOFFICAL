@@ -66,12 +66,16 @@ Page({
                       })
                       that.setRemarkInTable(that.data.item.remark);
                       that.setReasonInTable(that.data.item.reason);
-                      var approvelogs=res.data.approvelog;
-                      var filtered=approvelogs.filter(function(itemone){return itemone.approve_node==43})
-                      var refuseReason=filtered[0];
-                      that.setData({
-                          refuseReason:refuseReason.remark
-                      })
+                      if(res.data.state==43){
+                          var approvelogs=res.data.approvelog;
+                          var filtered=approvelogs.filter(function(itemone){return itemone.approve_node==43})
+                          var refuseReason=filtered[0];
+                          if(refuseReason!=undefined){
+                            that.setData({
+                                refuseReason:refuseReason.remark
+                            })
+                          }
+                        }
 
                     }
                     that.setData({

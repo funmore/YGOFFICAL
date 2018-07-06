@@ -3,7 +3,14 @@ var app=getApp();
 var api = app.data.api;
 Page({
   data: {
-    array_company:new Array(),
+    array_company:[
+    {index:0,name:"所内"},
+    {index:1,name:"航程正道"},
+    {index:2,name:"吉安康顺"},
+    {index:3,name:"鑫承安达"},
+    {index:4,name:"逗涛"},
+    {index:5,name:"测试公司"},
+    ],
     index_company:0,
   	orderToSend:new Array()
   },
@@ -12,7 +19,7 @@ Page({
   	this.setData({
   		orderToSend:orderToSend
   	});
-    this.getCompany();
+    //this.getCompany();
   	var a =1;
   },
   getCompany(){
@@ -45,7 +52,8 @@ Page({
   },
   Appoint:function(e){
       var formId = e.detail.formId;
-      var companyIdToSend=this.data.array_company[this.data.index_company].id;
+      //var companyIdToSend=this.data.array_company[this.data.index_company].id;
+      var companyIdToSend=this.data.array_company[this.data.index_company].index+1;
       var orderIdToSend=new Array();
       for(var item in this.data.orderToSend){
         orderIdToSend.push(this.data.orderToSend[item].id);

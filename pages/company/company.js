@@ -270,6 +270,9 @@ Page({
                   }
                 })
             }
+                  that.setData({
+                      loadingHidden:true
+                    })
         }
           });//show modal end 
   },

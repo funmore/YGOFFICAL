@@ -4,7 +4,7 @@ Page({
   data: {
     leaders:new Array(),
     items: [
-      {name: 'a', value: '赵家琛'},
+      {name: 'a', value: '曹哲'},
       {name: 'b', value: '张世溪'},
       {name: 'c', value: '董胜波'},
       {name: 'd', value: '许绍青'},
@@ -13,7 +13,11 @@ Page({
       {name: 'g', value: '杨刚'},
       {name: 'h', value: '黄宜虎'},
       {name: 'i', value: '刘春利'},
-      {name: 'j', value: '张强'}
+      {name: 'j', value: '张强'},
+      { name: 'k', value: '陈捷' },
+      { name: 'm', value: '张长革' },
+      { name: 'n', value: '王峥' },
+      { name: 'o', value: '曾喆' }
       
     ]
   },
